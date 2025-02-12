@@ -31,10 +31,6 @@ snake_speed = 15
 # Define font style
 font_style = pygame.font.SysFont(None, 50)
 
-# Load audio files
-eat_sound = pygame.mixer.Sound('assets/eat.mp3')
-game_over_sound = pygame.mixer.Sound('assets/game_over.mp3')
-
 def our_snake(snake_block, snake_list):
     for x in snake_list:
         pygame.draw.rect(dis, black, [x[0], x[1], snake_block, snake_block])
@@ -93,7 +89,7 @@ def gameLoop():
 
         if x1 >= dis_width or x1 < 0 or y1 >= dis_height or y1 < 0:
             game_close = True
-            game_over_sound.play()
+            print("Game Over!")
         x1 += x1_change
         y1 += y1_change
         dis.fill(blue)
@@ -108,7 +104,7 @@ def gameLoop():
         for x in snake_List[:-1]:
             if x == snake_Head:
                 game_close = True
-                game_over_sound.play()
+                print("Game Over!")
 
         our_snake(snake_block, snake_List)
 
@@ -118,7 +114,7 @@ def gameLoop():
             foodx = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
             foody = round(random.randrange(0, dis_height - snake_block) / 10.0) * 10.0
             Length_of_snake += 1
-            eat_sound.play()
+            print("Yum!")
 
         clock.tick(snake_speed)
 
